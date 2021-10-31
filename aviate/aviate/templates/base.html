@@ -1,0 +1,14 @@
+    <tr>
+      {% if user.is_authenticated %}
+      
+        <a  align="left" href="#">Welcome, {{user.username}}</a>
+        <a align="right" class="nav-link" href="/logout">Logout</a>
+      
+      {% else %}
+
+        <a  align="left" href="/login">Login</a>
+
+      {% endif %}
+      {% block content %}
+      {% endblock %}
+    </tr>

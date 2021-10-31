@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+ 
+    <!-- Security token -->
+    {% csrf_token %}
+ 
+    <!-- Using the formset -->
+    {{ form.as_p }}
+     
+    <input type="submit" value="Submit">
+   
+    {% csrf_token %}
+  </form>
+
+  {% if uploaded_file_url %}
+    <p>Latest Resume: <a href="{% url 'pdfview' filename %}">{{ filename }}</a></p>
+    <a href="{% url 'resume' %}">Update Resume</a>
+
+  {% endif %}
+  <a href="{% url 'profile' %}">View</a>
+</form>
+
+  
+{% endblock %}

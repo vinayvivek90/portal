@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+   
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Email : </label>{{ profile.email }}<br>
+    <label>Location : </label>{{ profile.location }}<br>
+    {% if resume %}
+      <label>Resume : </label><p>Latest: <a href="{% url 'pdfview' resume %}">{{ resume }}</a></p><br>
+    {% endif %}
+    <a href="{% url 'resume' %}">Update Resume</a>
+    <a href="{% url 'create_profile' %}">Update Profile</a>
+    <a href="{% url 'delete' %}">Delete Profile</a>
+
+  </form>
+  
+{% endblock %}

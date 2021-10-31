@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if uploaded_file_url %}
+    <p>Latest: <a href="{% url 'pdfview' filename %}">{{ filename }}</a></p>
+  {% endif %}
+  {% if resumes %}
+    <p>Older resumes</p>
+    {% for resume,time in resumes %}
+      <a href="{% url 'pdfview' resume %}"> resume uploaded at {{ time }}</a>
+      <br>
+    {% endfor%}
+  {% endif %}
+{% endblock %}
